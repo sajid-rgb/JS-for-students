@@ -6,7 +6,7 @@ const users = [];
 
  }
 
-const addUsers = (name, email, password) => {
+export const addUsers = (name, email, password) => {
     const userObj = {
         id: getId(),
         name,
@@ -25,7 +25,26 @@ const addUsers = (name, email, password) => {
         users.push(userObj)
     }
 }
+
 addUsers('Sajid','sajid@gmail.com','12345')
 addUsers('Sajid','sajid@gmail.com','123456')
 addUsers('Sajid','sajid@gmail.com','1234569')
 console.log(users)
+
+export let myProfile = {}
+export const login = (email, password) => {
+    const user = users.find(person => person.email === email && person.password === password);
+
+    if (user) {
+        console.log(`Login successful`);
+        myProfile = {
+            id: user.id,
+            name: user.name,
+            email: user.email
+        }
+
+    } else {
+        console.log('Invalid email or password. Please try again.');
+    }
+
+}
